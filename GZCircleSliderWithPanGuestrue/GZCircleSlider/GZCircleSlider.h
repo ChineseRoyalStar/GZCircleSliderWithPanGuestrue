@@ -12,6 +12,15 @@
 
 @property(nonatomic,assign) float lineWidth;
 
-- (instancetype)initWithFrame:(CGRect)frame lineWidth:(float)lineWidth currentIndex:(int)currentIndex;
+/*!
+ * @brief initializer
+ * @param frame The frame of GZCircleSlider
+ * @param lineWidth Linewidth of circle
+ * @param currentIndex Current highlighted index
+ * @return Instance of GZCircleSlider
+ */
+- (instancetype)initWithFrame:(CGRect)frame
+                    lineWidth:(float)lineWidth
+                 currentIndex:(int)currentIndex;
 
 @end

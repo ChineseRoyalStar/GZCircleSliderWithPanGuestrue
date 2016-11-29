@@ -54,19 +54,18 @@
     
     if(self = [super initWithFrame:frame]) {
         _lineWidth = lineWidth;
-       
-        // self.backgroundColor = [UIColor redColor];
+        
         [self drawCircle];
         [self addDialLayer];
         [self addTextLayers];
-    
+        
         _currentIndex = currentIndex;
         
         previousIndex = -1;
-        _timer = [NSTimer scheduledTimerWithTimeInterval:2.0/12 target:self selector:@selector(animationOnAdvance) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:2.0/12 target:self selector:@selector(animationInAdvance) userInfo:nil repeats:YES];
         [self performSelector:@selector(setup) withObject:nil afterDelay:2.0];
-
     }
+    
     return self;
 }
 
@@ -213,14 +212,17 @@
 }
 
 #pragma mark - Animation
-- (void)animationOnAdvance {
+- (void)animationInAdvance {
     
     if(previousIndex == 11) {
         
         self.dialsLayers[previousIndex].backgroundColor = [UIColor blueColor].CGColor;
         
         self.textLayers[previousIndex].foregroundColor = kDefaultFontColor.CGColor;
+        
+        //destory timer and skip
         [self.timer invalidate];
+        self.timer = nil;
         
         return;
     }
@@ -231,40 +233,36 @@
         self.textLayers[previousIndex].foregroundColor = kDefaultFontColor.CGColor;
     }
     
-   
     previousIndex += 1;
     
     self.dialsLayers[previousIndex].backgroundColor = [UIColor cyanColor].CGColor;
     
     self.textLayers[previousIndex].foregroundColor = kHighlightedFontColor.CGColor;
-    
-
 }
 
 #pragma mark - Operation
 
 - (void)moveHandleAtIndex:(int)index {
-
+    
     CGFloat radian = ToRad(index*30.0f);
     self.handleImgView.transform = CGAffineTransformMakeRotation(radian);
     
-    if(index!=self.currentIndex) {
-        
-        if(index==12) {
-            index = 0;
-        }
-        //change dialLayer background color
-        self.dialsLayers[self.currentIndex].backgroundColor = [UIColor blueColor].CGColor;
-        CAShapeLayer *currentDialLayer = self.dialsLayers[index];
-        currentDialLayer.backgroundColor = kHighlightedFontColor.CGColor;
-        
-        //change textLayer forground color
-        self.textLayers[self.currentIndex].foregroundColor = kDefaultFontColor.CGColor;
-        CATextLayer *currentTextLayer = self.textLayers[index];
-        currentTextLayer.foregroundColor = kHighlightedFontColor.CGColor;
-        
-        self.currentIndex = index;
+    
+    if(index==12) {
+        index = 0;
     }
+    //change dialLayer background color
+    self.dialsLayers[self.currentIndex].backgroundColor = [UIColor blueColor].CGColor;
+    CAShapeLayer *currentDialLayer = self.dialsLayers[index];
+    currentDialLayer.backgroundColor = kHighlightedFontColor.CGColor;
+    
+    //change textLayer forground color
+    self.textLayers[self.currentIndex].foregroundColor = kDefaultFontColor.CGColor;
+    CATextLayer *currentTextLayer = self.textLayers[index];
+    currentTextLayer.foregroundColor = kHighlightedFontColor.CGColor;
+    
+    self.currentIndex = index;
+    
 }
 
 #pragma mark PanGestureAction
@@ -272,7 +270,7 @@
     
     CGPoint currentPoint = [pan locationInView:self];
     CGFloat ang = AngleFromNorth(self.centerInSelf, currentPoint);
-
+    
     CGFloat radians = ToRad(ang+90);
     int index = round((double)((int)(ang+90)%(int)360)/30);
     
