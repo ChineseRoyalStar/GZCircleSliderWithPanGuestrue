@@ -13,6 +13,8 @@
 		225A42371DED11C5009C34EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225A42351DED11C5009C34EA /* Main.storyboard */; };
 		225A42391DED11C5009C34EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 225A42381DED11C5009C34EA /* Assets.xcassets */; };
 		225A423C1DED11C5009C34EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 225A423A1DED11C5009C34EA /* LaunchScreen.storyboard */; };
+		225A42461DED120F009C34EA /* GZCircleSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 225A42451DED120F009C34EA /* GZCircleSlider.m */; };
+		225A424A1DED1819009C34EA /* circleHandle.png in Resources */ = {isa = PBXBuildFile; fileRef = 225A42491DED1819009C34EA /* circleHandle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		225A42381DED11C5009C34EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		225A423B1DED11C5009C34EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		225A423D1DED11C5009C34EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		225A42441DED120F009C34EA /* GZCircleSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZCircleSlider.h; sourceTree = "<group>"; };
+		225A42451DED120F009C34EA /* GZCircleSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZCircleSlider.m; sourceTree = "<group>"; };
+		225A42491DED1819009C34EA /* circleHandle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleHandle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,7 @@
 		225A422B1DED11C5009C34EA /* GZCircleSliderWithPanGuestrue */ = {
 			isa = PBXGroup;
 			children = (
+				225A42431DED11EC009C34EA /* GZCircleSlider */,
 				225A422F1DED11C5009C34EA /* AppDelegate.h */,
 				225A42301DED11C5009C34EA /* AppDelegate.m */,
 				225A42321DED11C5009C34EA /* ViewController.h */,
@@ -77,6 +83,16 @@
 				225A422D1DED11C5009C34EA /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		225A42431DED11EC009C34EA /* GZCircleSlider */ = {
+			isa = PBXGroup;
+			children = (
+				225A42441DED120F009C34EA /* GZCircleSlider.h */,
+				225A42451DED120F009C34EA /* GZCircleSlider.m */,
+				225A42491DED1819009C34EA /* circleHandle.png */,
+			);
+			path = GZCircleSlider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				225A423C1DED11C5009C34EA /* LaunchScreen.storyboard in Resources */,
+				225A424A1DED1819009C34EA /* circleHandle.png in Resources */,
 				225A42391DED11C5009C34EA /* Assets.xcassets in Resources */,
 				225A42371DED11C5009C34EA /* Main.storyboard in Resources */,
 			);
@@ -151,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				225A42341DED11C5009C34EA /* ViewController.m in Sources */,
+				225A42461DED120F009C34EA /* GZCircleSlider.m in Sources */,
 				225A42311DED11C5009C34EA /* AppDelegate.m in Sources */,
 				225A422E1DED11C5009C34EA /* main.m in Sources */,
 			);
