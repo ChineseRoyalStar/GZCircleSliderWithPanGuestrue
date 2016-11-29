@@ -12,6 +12,6 @@
 
 @property(nonatomic,assign) float lineWidth;
 
-- (instancetype)initWithFrame:(CGRect)frame lineWidth:(float)lineWidth;
+- (instancetype)initWithFrame:(CGRect)frame lineWidth:(float)lineWidth currentIndex:(int)currentIndex;
 
 @end
