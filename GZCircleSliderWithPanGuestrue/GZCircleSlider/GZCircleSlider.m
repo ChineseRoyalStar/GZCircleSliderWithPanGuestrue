@@ -8,6 +8,10 @@
 
 #import "GZCircleSlider.h"
 
+
+#define kDefaultFontColor [UIColor colorWithWhite:0.5 alpha:0.3]
+#define kHighlightedFontColor [UIColor cyanColor]
+
 #define ToRad(deg) ((M_PI*(deg))/180.00)
 #define ToDeg(rad) ((180*rad)/M_PI)
 #define SQR(x) ((x)*(x))
@@ -38,7 +42,7 @@
 - (instancetype)initWithFrame:(CGRect)frame lineWidth:(float)lineWidth{
     
     if(self = [super initWithFrame:frame]) {
-        
+    
         self.backgroundColor = [UIColor clearColor];
         self.userInteractionEnabled = YES;
         
@@ -129,7 +133,7 @@
             textLayer.string = [NSString stringWithFormat:@"%d",i];
         }
         textLayer.fontSize = 15;
-        textLayer.foregroundColor = [UIColor grayColor].CGColor;
+        textLayer.foregroundColor = kDefaultFontColor.CGColor;
         textLayer.alignmentMode = @"center";
         
         [self.layer addSublayer:textLayer];
@@ -156,14 +160,15 @@
 #pragma mark PanGestureAction
 - (void)panGestureAction:(UIPanGestureRecognizer *)pan {
     
+    CGPoint currentPoint = [pan locationInView:self];
+    
     if(pan.state == UIGestureRecognizerStateBegan) {
         
-        CGPoint currentPoint = [pan locationInView:self];
         
-        NSLog(@"%f,%f",currentPoint.x,currentPoint.y);
+        //  NSLog(@"%f,%f",currentPoint.x,currentPoint.y);
     }else if(pan.state == UIGestureRecognizerStateChanged){
         
-        CGPoint currentPoint = [pan locationInView:self];
+        
         CGFloat ang = AngleFromNorth(self.centerInSelf, currentPoint);
         CGFloat radians = ToRad(ang+90);
         self.handleImgView.transform = CGAffineTransformMakeRotation(radians);
@@ -179,18 +184,27 @@
             //change dialLayer background color
             self.dialsLayers[previousIndex].backgroundColor = [UIColor blueColor].CGColor;
             CAShapeLayer *currentDialLayer = self.dialsLayers[index];
-            currentDialLayer.backgroundColor = [UIColor cyanColor].CGColor;
+            currentDialLayer.backgroundColor = kHighlightedFontColor.CGColor;
             
             //change textLayer forground color
-            self.textLayers[previousIndex].foregroundColor = [UIColor grayColor].CGColor;
+            self.textLayers[previousIndex].foregroundColor = kDefaultFontColor.CGColor;
             CATextLayer *currentTextLayer = self.textLayers[index];
-            currentTextLayer.foregroundColor = [UIColor cyanColor].CGColor;
+            currentTextLayer.foregroundColor = kHighlightedFontColor.CGColor;
             
             previousIndex = index;
         }
         
     }else if(pan.state ==  UIGestureRecognizerStateEnded){
-        NSLog(@"ended");
+        
+        CGFloat ang = AngleFromNorth(self.centerInSelf, currentPoint);
+       
+        float radians = ToRad(round((double)((int)(ang+90)%(int)360)/30)*30.0);
+        
+        self.handleImgView.transform = CGAffineTransformMakeRotation(radians);
+        
+        //change current index color
+        
+        
     }
 }
 

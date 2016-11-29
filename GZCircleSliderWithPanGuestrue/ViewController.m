@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor blackColor];
+    
     GZCircleSlider *slider = [[GZCircleSlider alloc]initWithFrame:CGRectMake(0, 0, 270, 270) lineWidth:(float)11];
     
     slider.center = self.view.center;
